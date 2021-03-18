@@ -32,7 +32,10 @@ router.post('/create', function(req, res, next){
     var Product_url = req.body.Product_url;
     var product_image_url = req.body.product_image_url;
 
-    var sql =  `INSERT INTO products (product_name, website_name, price, review, rating, Product_url,product_image_url ) VALUES ("${product_name}", "${website_name}", "${price}","${review}","${rating}","${Product_url}","${product_image_url}")`;
+   // var sql =  `INSERT INTO products (product_name, website_name, price, review, rating, Product_url,product_image_url ) VALUES ("${product_name}", "${website_name}", "${price}","${review}","${rating}","${Product_url}","${product_image_url}")`;
+    var sql =  `INSERT INTO products (website_name, product_id, price, review, rating, Product_url,product_image_url ) SELECT "${website_name}", product_id, "${price}","${review}","${rating}","${Product_url}","${product_image_url}" from products where product_name=${product_name}`;
+    //var sql =  `INSERT INTO products (website_name, product_id, price, review, rating, Product_url,product_image_url ) VALUES ("${website_name}","(SELECT product_id from products where product_name=${product_name})", "${price}","${review}","${rating}","${Product_url}","${product_image_url}")`;
+
     db.query(sql, function(err, result){
         if(err) throw err;
         res.redirect('/products');
