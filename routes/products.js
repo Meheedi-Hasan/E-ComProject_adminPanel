@@ -3,6 +3,7 @@ var router = express.Router();
 var db = require('../db');
 
 /* get method for fetch all products.*/
+
 router.get('/', function(req, res, next) {
     var sql = `SELECT product_info.id,products.product_name,product_info.website_name,
     product_info.price,product_info.review,product_info.rating,
@@ -32,9 +33,10 @@ router.post('/create', function(req, res, next){
     var Product_url = req.body.Product_url;
     var product_image_url = req.body.product_image_url;
 
-   // var sql =  `INSERT INTO products (product_name, website_name, price, review, rating, Product_url,product_image_url ) VALUES ("${product_name}", "${website_name}", "${price}","${review}","${rating}","${Product_url}","${product_image_url}")`;
-    var sql =  `INSERT INTO products (website_name, product_id, price, review, rating, Product_url,product_image_url ) SELECT "${website_name}", product_id, "${price}","${review}","${rating}","${Product_url}","${product_image_url}" from products where product_name=${product_name}`;
-    //var sql =  `INSERT INTO products (website_name, product_id, price, review, rating, Product_url,product_image_url ) VALUES ("${website_name}","(SELECT product_id from products where product_name=${product_name})", "${price}","${review}","${rating}","${Product_url}","${product_image_url}")`;
+    var sql_1 = `SELECT product_id from products where product_name=${product_name}`;
+    // var sql =  `INSERT INTO products (product_name, website_name, price, review, rating, Product_url,product_image_url ) VALUES ("${product_name}", "${website_name}", "${price}","${review}","${rating}","${Product_url}","${product_image_url}")`;
+    //var sql =  `INSERT INTO products (website_name, product_id, price, review, rating, Product_url,product_image_url ) SELECT "${website_name}", product_id, "${price}","${review}","${rating}","${Product_url}","${product_image_url}" from products where product_name=${product_name}`;
+    var sql =  `INSERT INTO product_info (website_name, product_id, price, review, rating, Product_url,product_image_url ) VALUES ("${website_name}", "sql_1", "${price}","${review}","${rating}","${Product_url}","${product_image_url}")`;
 
     db.query(sql, function(err, result){
         if(err) throw err;
