@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var db = require('../db');
+var alert = require('alert');
 
 /* get method for fetch all products.*/
 
@@ -34,13 +35,13 @@ router.post('/create', function(req, res, next){
     var product_image_url = req.body.product_image_url;
 
     var sql_1 = `SELECT product_id from products where product_name=${product_name}`;
-    // var sql =  `INSERT INTO products (product_name, website_name, price, review, rating, Product_url,product_image_url ) VALUES ("${product_name}", "${website_name}", "${price}","${review}","${rating}","${Product_url}","${product_image_url}")`;
-    //var sql =  `INSERT INTO products (website_name, product_id, price, review, rating, Product_url,product_image_url ) SELECT "${website_name}", product_id, "${price}","${review}","${rating}","${Product_url}","${product_image_url}" from products where product_name=${product_name}`;
-    var sql =  `INSERT INTO product_info (website_name, product_id, price, review, rating, Product_url,product_image_url ) VALUES ("${website_name}", "sql_1", "${price}","${review}","${rating}","${Product_url}","${product_image_url}")`;
+
+    var sql =  `INSERT INTO product_info (website_name, product_id, price, review, rating, Product_url,product_image_url ) VALUES ("${website_name}", "${sql_1}", "${price}","${review}","${rating}","${Product_url}","${product_image_url}")`;
 
     db.query(sql, function(err, result){
         if(err) throw err;
-        res.redirect('/products');
+        res.redirect('/products')
+        //alert("Created successfully!");
 
     })
 })
@@ -73,6 +74,7 @@ router.post('/edit/:id', function(req, res, next){
     db.query(sql, function(err, result){
         if(err) throw err;
         res.redirect('/products');
+        //alert("Updated successfully!");
 
     })
 })
