@@ -24,7 +24,7 @@
                <input type="text" name="product_image_url" class="form-control" value={{product.product_image_url}} placeholder="Product_Img Url" />
            </div><br/>
            <div class="form-group">
-               <button class="btn btn-info">Save Product</button>
+               <button onclick= "popUp()" class="btn btn-info">Save Product</button>
            </div>
            </form>
        </div>
@@ -32,6 +32,11 @@
    </div>
 
 </div>
+<script>
+    function popUp(){
+        alert("Updated successfully!");
+    }
+</script>
 
 
 

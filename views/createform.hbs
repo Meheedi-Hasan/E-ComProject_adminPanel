@@ -1,3 +1,4 @@
+
 <div class="container">
    <h2>{{title}}</h2>
    <hr />
@@ -26,7 +27,7 @@
                <input type="text" name="product_image_url" class="form-control" placeholder="Product_Img Url" />
            </div><br/>
            <div class="form-group">
-               <button class="btn btn-info">Save Product</button>
+               <button onclick= "create()" class="btn btn-info">Save Product</button>
            </div>
            </form>
        </div>
@@ -34,6 +35,11 @@
    </div>
 
 </div>
+<script>
+    function create(){
+        alert("Created successfully!");
+    }
+</script>
 
 
 
