@@ -27,14 +27,19 @@
                 <td>{{this.product_image_url}}</td>
                 <td>
                     <a href="/products/edit-form/{{this.id}}" class="btn btn-info btn-sm">Edit</a><br/><br/>
-                    <a href="/products/delete/{{this.id}}" class="btn btn-danger btn-sm">Delete</a>
+                    <a href="/products/delete/{{this.id}}" onclick= "delete()" class="btn btn-danger btn-sm">Delete</a>
                 </td>
             </tr>
         {{/each}}
     </table>
   </div>
 </div>
-
+<script>
+    
+    function delete(){
+        alert("Deleted successfully!");
+    }
+</script>
 
 
 
